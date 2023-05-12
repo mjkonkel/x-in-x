@@ -22,9 +22,9 @@ type Auth {
   type Query {
   me: User
   users: [User]
-  user:(username: String!): User
+  user(username: String!): User
   goals: [Goal]
-  goal:(_id: ID!): Goal
+  goal(_id: ID!): Goal
   }
 
   type Mutation {
