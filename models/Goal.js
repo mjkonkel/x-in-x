@@ -1,10 +1,11 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const goalSchema = new Schema(
     {
         goalText: {
             type: String,
             required: true,
+            minlength: 1,
             maxLength: 280
         },
         username: {
@@ -19,4 +20,6 @@ const goalSchema = new Schema(
     }
 );
 
-module.exports = goalSchema;
+const Goal = model('Goal', goalSchema);
+
+module.exports = Goal;

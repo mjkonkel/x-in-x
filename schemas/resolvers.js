@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Goal } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -8,7 +8,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user_id })
                     .select('-__v -password')
-                .populate('goals')
+                    .populate('goals')
 
                 return userData;
             }
@@ -18,13 +18,13 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-            .populate('goals')
+                .populate('goals')
         },
         user: async (parent, { username }) => {
             console.log('the username is ', username)
             const userData = await User.findOne({ username })
                 .select('-__v -password')
-            .populate('goals')
+                .populate('goals')
             console.log(userData)
             return userData
         },
@@ -57,6 +57,7 @@ const resolvers = {
             }
 
             const token = signToken(user);
+            console.log("user is logged in")
             return { user, token };
         },
         addGoal: async (parent, args, context) => {
@@ -64,7 +65,7 @@ const resolvers = {
                 const goal = await Goal.create({ ...args, username: context.user.username });
 
                 await User.findByIdAndUpdate(
-                    { _id: context.user_id },
+                    { _id: context.user._id },
                     { $push: { goals: goal._id } },
                     { new: true }
                 );
