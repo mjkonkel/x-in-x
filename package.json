@@ -1,0 +1,35 @@
+{
+  "name": "x-in-x",
+  "version": "1.0.0",
+  "description": "X-in-X create good goals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon",
+    "seed": "node seeders/seeds.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjkonkel/x-in-x.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjkonkel/x-in-x/issues"
+  },
+  "homepage": "https://github.com/mjkonkel/x-in-x#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "apollo-server-express": "^3.6.1",
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
